@@ -1,6 +1,7 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, useMediaQuery } from "@mui/material";
 import React from "react";
 import LOGO from "./Assets/logo.png";
+import { useTheme } from "@emotion/react";
 
 // -------- Color Palette --------
 export const MENU_FONT_COLOR = "#303030";
@@ -14,9 +15,12 @@ export const FIFTH_SHADE = "#E4FDE1";
 // ------------------------------
 
 export const Header = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   const menus = [
     { name: "Jobs", url: "/" },
-    { name: "Applied Jobs", url: "/applied-jobs" },
+    { name: isSmallScreen ? "Applied" : "Applied Jobs", url: "/applied-jobs" },
     { name: "Bookmarks", url: "/bookmarks" },
   ];
 
@@ -28,6 +32,7 @@ export const Header = () => {
       px={10}
       mx={1.6}
       borderRadius={6.8}
+      flexDirection={isSmallScreen ? "column" : "row"}
       alignItems={"center"}
       sx={{
         backgroundColor: THIRD_SHADE,
@@ -40,6 +45,9 @@ export const Header = () => {
         display={"flex"}
         gap={"5%"}
         alignItems="center"
+        sx={{
+          placeContent: isSmallScreen && "center",
+        }}
       >
         <img
           src={LOGO}
