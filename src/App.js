@@ -1,24 +1,27 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import { generateJobs } from "./helpers";
-import JobListing from "./JobListing";
-import { Filters } from "./Filters";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./Home";
+import { Header } from "./Header";
+import Bookmark from "./Bookmark";
+import AppliedJobs from "./AppliedJobs";
 
 const App = () => {
-  const [jobs, setJobs] = useState([]);
-  const [filteredJobs, setFilteredJobs] = useState([]);
-
-  // Get the jobs
-  useEffect(() => {
-    const tempJobs = generateJobs();
-    setJobs(tempJobs);
-    setFilteredJobs(tempJobs);
-  }, []);
-
   return (
-    <div className="App">
-      <Filters jobs={jobs} setFilteredJobs={setFilteredJobs} />
-      <JobListing filteredJobs={filteredJobs} />
+    <div
+      className="App"
+      style={{
+        paddingLeft: "3%",
+        paddingRight: "3%",
+      }}
+    >
+      <Header />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/applied-jobs" element={<AppliedJobs />} />
+          <Route path="/bookmarks" element={<Bookmark />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };

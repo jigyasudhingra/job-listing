@@ -61,7 +61,7 @@ export const Filters = ({ jobs, setFilteredJobs }) => {
   };
 
   const handleSelectOption = (name, option) => {
-    // If already exist, then we have to remove
+    // If already exist in filterOptions, then we have to remove
     if (selectedOptionsRef.current[name][makeOptionKey(option)]) {
       selectedOptionsRef.current[name][makeOptionKey(option)] = false;
 

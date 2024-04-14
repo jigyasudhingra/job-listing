@@ -1,9 +1,10 @@
+import { Box } from "@mui/material";
 import React from "react";
 
 export const JobCard = ({ job }) => {
   return (
-    <div style={{ border: "1px solid black", margin: 5, padding: 5 }}>
+    <Box m={1} p={1} borderRadius={2.5} border={"1px solid black"}>
       {job.Position}
-    </div>
+    </Box>
   );
 };
