@@ -2,6 +2,17 @@ import { Box, Button } from "@mui/material";
 import React from "react";
 import LOGO from "./Assets/logo.png";
 
+// -------- Color Palette --------
+export const MENU_FONT_COLOR = "#303030";
+
+// All Shades ranging from dark to lowest
+export const FIRST_SHADE = "#90CF8E";
+export const SECOND_SHADE = "#A7DCA5";
+export const THIRD_SHADE = "#C6EDC3";
+export const FOURTH_SHADE = "#DAF2D7";
+export const FIFTH_SHADE = "#E4FDE1";
+// ------------------------------
+
 export const Header = () => {
   const menus = [
     { name: "Jobs", url: "/" },
@@ -9,27 +20,17 @@ export const Header = () => {
     { name: "Bookmarks", url: "/bookmarks" },
   ];
 
-  // -------- Color Palette --------
-  const MENU_FONT_COLOR = "#303030";
-
-  // All Shades ranging from dark to lowest
-  const first = "#90CF8E";
-  const second = "#A7DCA5";
-  const third = "#C6EDC3";
-  const fourth = "#DAF2D7";
-  const fifth = "#E4FDE1";
-  // ------------------------------
-
   return (
     <Box
       display={"flex"}
       mt={"2%"}
-      p={2.4}
+      p={2}
       px={10}
-      borderRadius={20}
+      mx={1.6}
+      borderRadius={6.8}
       alignItems={"center"}
       sx={{
-        backgroundColor: third,
+        backgroundColor: THIRD_SHADE,
       }}
     >
       {/* Left Side */}
@@ -48,8 +49,8 @@ export const Header = () => {
             transform: "rotate(90deg)",
           }}
         />
-        <Box fontSize={22} fontWeight={700} letterSpacing={0.4}>
-          Go Careers
+        <Box fontSize={22} fontWeight={700} letterSpacing={0.2}>
+          GoCareers
         </Box>
       </Box>
       {/* Right Side */}
@@ -62,7 +63,9 @@ export const Header = () => {
       >
         {menus.map((menu) => (
           <Box
+            key={menu.name}
             sx={{ cursor: "pointer" }}
+            fontSize={13}
             onClick={() => (window.location.href = menu.url)}
           >
             {menu.name}

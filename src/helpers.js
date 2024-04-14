@@ -1,4 +1,5 @@
 import DEMO_ICON from "./Assets/Amazon_icon.png";
+import { v4 as uuidv4 } from "uuid";
 
 // Generating random jobs data
 export const positionOptions = [
@@ -47,6 +48,7 @@ export const generateJobs = () => {
 
   for (let i = 0; i < 50; i++) {
     const job = {
+      id: uuidv4(),
       Position: getRandom(positionOptions),
       Experience: getRandom(experienceOptions),
       Type: getRandom(typeOptions),

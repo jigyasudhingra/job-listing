@@ -1,4 +1,4 @@
-import { Pagination } from "@mui/material";
+import { Box, Grid, Pagination, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { JobCard } from "./JobCard";
 
@@ -14,28 +14,31 @@ const JobListing = ({ filteredJobs }) => {
   }, [filteredJobs]);
 
   return (
-    <div>
-      {/* Pagination & Job Listing */}
-      <div>
-        {/* Jobs Listing */}
-        {jobs
-          .slice(page * jobsPerPage - jobsPerPage, page * jobsPerPage)
-          .map((job, index) => (
-            <JobCard
-              key={job.Position + job.Type + job.Company + job.Experience}
-              job={job}
+    <>
+      <Grid item xs={12} sm={9}>
+        <Grid item container spacing={2}>
+          {jobs
+            .slice(page * jobsPerPage - jobsPerPage, page * jobsPerPage)
+            .map((job, index) => (
+              <JobCard key={job.id} job={job} />
+            ))}
+        </Grid>
+        <Grid item mb={10}>
+          <Box
+            style={{
+              justifyContent: "center",
+            }}
+          >
+            <Pagination
+              count={totalPages}
+              page={page}
+              defaultPage={1}
+              onChange={(e, page) => setPage(page)}
             />
-          ))}
-      </div>
-      <div>
-        <Pagination
-          count={totalPages}
-          page={page}
-          defaultPage={1}
-          onChange={(e, page) => setPage(page)}
-        />
-      </div>
-    </div>
+          </Box>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 

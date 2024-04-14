@@ -1,12 +1,13 @@
 import React, { useRef, useState } from "react";
 import {
   categorieOptions,
-  companyOptions,
   experienceOptions,
   locationOptions,
   positionOptions,
   typeOptions,
 } from "./helpers";
+import { Box, Button } from "@mui/material";
+import { FOURTH_SHADE, SECOND_SHADE, THIRD_SHADE } from "./Header";
 
 export const Filters = ({ jobs, setFilteredJobs }) => {
   const [filters, setFilters] = useState({
@@ -52,7 +53,6 @@ export const Filters = ({ jobs, setFilteredJobs }) => {
     { array: typeOptions, name: "Type" },
     { array: categorieOptions, name: "Category" },
     { array: locationOptions, name: "Location" },
-    { array: companyOptions, name: "Company" },
   ];
 
   // Conver option name's string into key
@@ -78,16 +78,24 @@ export const Filters = ({ jobs, setFilteredJobs }) => {
   };
 
   return (
-    <div>
-      <button onClick={() => handleFilter(filters)}>Filter</button>
+    <Box backgroundColor={THIRD_SHADE} borderRadius={5} p={4}>
       {typeOfOptions.map((optionType) => {
         return (
-          <div key={optionType.name}>
-            <div style={{ fontWeight: 700 }}>{optionType.name}</div>
+          <Box
+            key={optionType.name}
+            style={{
+              textAlign: "left",
+            }}
+          >
+            <Box style={{ color: "#6D6D6D", marginBottom: 8, fontWeight: 500 }}>
+              {optionType.name}
+            </Box>
             {optionType.array.map((option) => (
-              <div
+              <Box
                 key={option}
                 style={{
+                  marginBottom: 5,
+                  cursor: "pointer",
                   color: selectedOptionsRef.current[optionType.name][
                     makeOptionKey(option)
                   ]
@@ -97,12 +105,26 @@ export const Filters = ({ jobs, setFilteredJobs }) => {
                 onClick={() => handleSelectOption(optionType.name, option)}
               >
                 {option}
-              </div>
+              </Box>
             ))}
             <br />
-          </div>
+          </Box>
         );
       })}
-    </div>
+      <button
+        onClick={() => handleFilter(filters)}
+        style={{
+          borderRadius: 20,
+          // letterSpacing: 0.4,
+          backgroundColor: SECOND_SHADE,
+          border: "none",
+          padding: "12px 20px",
+          width: "100%",
+          cursor: "pointer",
+        }}
+      >
+        Filter
+      </button>
+    </Box>
   );
 };

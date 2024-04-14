@@ -3,7 +3,7 @@ import { Filters } from "./Filters";
 import { Header } from "./Header";
 import JobListing from "./JobListing";
 import { generateJobs } from "./helpers";
-import { Box } from "@mui/material";
+import { Box, Grid, Paper } from "@mui/material";
 
 const Home = () => {
   const [jobs, setJobs] = useState([]);
@@ -18,8 +18,27 @@ const Home = () => {
 
   return (
     <Box>
-      {/* <Filters jobs={jobs} setFilteredJobs={setFilteredJobs} />
-      <JobListing filteredJobs={filteredJobs} /> */}
+      {/* <JobListing filteredJobs={filteredJobs} /> */}
+      <div style={{ flexGrow: 1, marginTop: 15 }}>
+        <Grid container spacing={2} padding={0}>
+          {/* Filters */}
+          <Grid item xs={12} sm={3} padding={0}>
+            <Paper
+              style={{
+                padding: 16,
+                textAlign: "center",
+                color: "black",
+                boxShadow: "none",
+                margin: 0,
+              }}
+            >
+              <Filters jobs={jobs} setFilteredJobs={setFilteredJobs} />
+            </Paper>
+          </Grid>
+          {/* Listing */}
+          <JobListing filteredJobs={filteredJobs} />
+        </Grid>
+      </div>
     </Box>
   );
 };
